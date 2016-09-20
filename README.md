@@ -5,7 +5,6 @@
 [![Bottlerockets Logo](https://cldup.com/6434u5RKNS.png)](https://bottlerockets.github.io/)
 
 [![NPM Version][npm-image]][npm-url]
-[![NPM Downloads][downloads-image]][downloads-url]
 [![Linux Build][travis-image]][travis-url]
 [![Windows Build][appveyor-image]][appveyor-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
@@ -188,5 +187,3 @@ MIT License. See [LICENSE.md](http://github.com/bottlerockets/bottlerockets/blob
 [coveralls-url]: https://coveralls.io/r/bottlerockets/bottlerockets?branch=master
 [npm-image]: https://img.shields.io/npm/v/bottlerockets.svg
 [npm-url]: https://npmjs.org/package/bottlerockets
-[downloads-image]: https://img.shields.io/npm/dm/bottlerockets.svg
-[downloads-url]: https://npmjs.org/package/bottlerockets
