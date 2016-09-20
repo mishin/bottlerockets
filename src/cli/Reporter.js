@@ -73,7 +73,10 @@ export default class Reporter extends EventEmitter {
   run(id, command, args, callback) {
     if (! this._ready && ! this._starting) {
       this._starting = true
+      const oldWrite = process.stdout.write
+      process.stdout.write = function(){}
       this._runCommand(undefined, initCommand, () => {
+        process.stdout.write = oldWrite
         this._ready = true
         this._starting = false
         this._commands = allCommands()

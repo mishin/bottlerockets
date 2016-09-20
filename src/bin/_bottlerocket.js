@@ -33,7 +33,9 @@ const reporter = new Reporter({
 
 reporter.setFiles(files)
 
-reporter.run('pass')
+reporter.run(null, 'process-exit', (result) => {
+  console.log('got result')
+})
 
 if (program.reporter === 'stream') {
   process.on('message', function (msg) {

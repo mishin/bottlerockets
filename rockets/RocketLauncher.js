@@ -13,3 +13,14 @@ command('fail')
       expect(1).to.be.equal(0)
     })
   })
+
+command('process-exit')
+  .description('Fail with a syntax error')
+  .action(function () {
+    describe('process.exit()', () => {
+      it('should not kill the bottlerocket', () => {
+        process.exit()
+        expect(1).to.be.equal(1)
+      })
+    })
+  })

@@ -1,1 +1,1 @@
-export { default as createPool } from './createPool'
+export { default as RocketLauncher } from './RocketLauncher'

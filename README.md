@@ -1,22 +1,13 @@
 [WIP] This project is a work in progress and is not recommended for production use
 
-```
-          .
-        .' |
-      .'   |      _______       __   __   __                       __          __
-      /`-._'     |   _   .-----|  |_|  |_|  .-----.----.-----.----|  |--.-----|  |_.-----.
-     /   /       |.  1   |  _  |   _|   _|  |  -__|   _|  _  |  __|    <|  -__|   _|__ --|
-    /   /        |.  _   |_____|____|____|__|_____|__| |_____|____|__|__|_____|____|_____|
-   /   /         |:  1    \
-  (`-./          |::.. .  /   bottlerockets.github.io
-   )             `-------'
-  '
-```
+-
+
+[![Bottlerockets Logo](https://cldup.com/6434u5RKNS.png)](https://bottlerockets.github.io/)
 
 [![NPM](https://nodei.co/npm/bottlerockets.png?stars&downloads&downloadRank)](https://nodei.co/npm/bottlerockets/)
 [![NPM](https://nodei.co/npm-dl/bottlerockets.png?months=6&height=2)](https://nodei.co/npm/bottlerockets/)
 
-Bottlerockets is an efficient BDD command framework written in [Node.js](https://nodejs.org) and streams task results with [Mocha](https://mochajs.org) and [Chai](http://chaijs.com/). Bottlerockets can be used as a CLI tool or a task queue server to stream human readable statuses of tasks and their JSON results.
+Bottlerockets is an efficient BDD command framework written in [Node.js](https://nodejs.org/) and streams task results with [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/). Bottlerockets can be used as a CLI tool or a task queue server to stream human readable statuses of tasks and their JSON results.
 
 # Use Cases
 
@@ -151,7 +142,7 @@ setInterval(function () {
 
 ## License
 
-MIT License. See [LICENSE](http://github.com/bottlerockets/bottlerockets/blob/master/LICENSE) file for details.
+MIT License. See [LICENSE.md](http://github.com/bottlerockets/bottlerockets/blob/master/LICENSE.md) file for details.
 
 ## Contributors
 

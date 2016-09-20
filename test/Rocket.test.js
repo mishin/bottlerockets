@@ -37,5 +37,15 @@ describe('Rocket', function () {
         })
       })
     })
+
+    describe('"exit" command', function () {
+      it('process.exit() should not kill the process', function (done) {
+        rocket.execute('process-exit').then((result) => {
+          expect(result.tests).to.be.equal(result.failures)
+          done()
+        })
+      })
+    })
+
   })
 })
