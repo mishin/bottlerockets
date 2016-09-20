@@ -21,7 +21,7 @@ Bottlerockets is an efficient BDD command framework written in [Node.js](https:/
 # Use Cases
 
 - Run commands with expensive setup/teardown operations
-- Run a persistent task queue server
+- Run a persistent task queue server with mocha-filled results
 - CLI interface for your project commands
 - Run commands in a REPL environment
 - Easily scale your bottlerockets
