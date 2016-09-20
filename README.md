@@ -4,8 +4,9 @@
 
 [![Bottlerockets Logo](https://cldup.com/6434u5RKNS.png)](https://bottlerockets.github.io/)
 
-[![NPM](https://nodei.co/npm/bottlerockets.png?stars&downloads&downloadRank)](https://nodei.co/npm/bottlerockets/)
-[![NPM](https://nodei.co/npm-dl/bottlerockets.png?months=6&height=2)](https://nodei.co/npm/bottlerockets/)
+[![NPM Version][npm-image]][npm-url]
+[![NPM Downloads][downloads-image]][downloads-url]
+[![Test Coverage][coveralls-image]][coveralls-url]
 
 Bottlerockets is an efficient BDD command framework written in [Node.js](https://nodejs.org/) and streams task results with [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/). Bottlerockets can be used as a CLI tool or a task queue server to stream human readable statuses of tasks and their JSON results.
 
@@ -140,6 +141,13 @@ setInterval(function () {
 }, 1000)
 ```
 
+## Documentation & Community
+
+  - [Documentation](https://bottlerockets.github.io/docs)
+  - [API](https://bottlerockets.github.io/api)
+  - [Gitter](https://gitter.im/bottlerockets/bottlerockets)
+  - [Wiki](https://github.com/bottlerockets/bottlerockets/wiki)
+
 ## License
 
 MIT License. See [LICENSE.md](http://github.com/bottlerockets/bottlerockets/blob/master/LICENSE.md) file for details.
@@ -149,3 +157,10 @@ MIT License. See [LICENSE.md](http://github.com/bottlerockets/bottlerockets/blob
 | Name           | GitHub                                  | Facebook                                   |
 | -------------- | --------------------------------------- | ------------------------------------------ |
 | **Sam Hunter** | [samhunta](https://github.com/samhunta) | [@samhuntr](https://facebook.com/samhuntr) |
+
+[npm-image]: https://img.shields.io/npm/v/bottlerockets.svg
+[npm-url]: https://npmjs.org/package/bottlerockets
+[downloads-image]: https://img.shields.io/npm/dm/bottlerockets.svg
+[downloads-url]: https://npmjs.org/package/bottlerockets
+[coveralls-image]: https://img.shields.io/coveralls/bottlerockets/bottlerockets/master.svg
+[coveralls-url]: https://coveralls.io/r/bottlerockets/bottlerockets?branch=master
