@@ -10,7 +10,7 @@
 [![Windows Build][appveyor-image]][appveyor-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
-Bottlerockets is an efficient BDD command framework written in [Node.js](https://nodejs.org/) and streams task results with [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/). Bottlerockets can be used as a CLI tool or a task queue server to stream human readable statuses of tasks and their JSON results.
+Bottlerockets is an efficient BDD command framework written in [Node.js](https://nodejs.org/) and streams task results with [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/). Bottlerockets can be used as a CLI tool or a task queue server to stream human readable statusses of tasks and their JSON results. Bottlerockets creates a CLI and REPL interface for your tasks for simpler debugging and crazy improvements to your development workflow.
 
 # Use Cases
 
@@ -59,22 +59,25 @@ command('welcome')
     describe('first name', function () {
       it('is "John"', function () {
         expect(args.firstName).to.be.equal('John')
-        task.name = args.firstName
+        task.result.name = args.firstName
       })
     })
 
     describe('last name', function () {
       it('is not "Doe"', function () {
         expect(args.lastName).to.not.be.equal('Doe')
-        task.name += ' ' + args.lastName
+        task.result.name += ' ' + args.lastName
       })
     })
 
     describe('is intruder', function () {
       it('should NOT be an intruder', function () {
         expect(args.intruder).to.be.equal(false)
+        task.result.intruder = false
       })
     })
+    
+    
   })
 ```
 
@@ -84,7 +87,9 @@ Then run the test bottlerocket command by running:
 bottlerocket welcome --first-name John --last-name Henrick --intruder
 ```
 
-# CLI
+# CLI Usage
+
+To run a single project bottlerocket command:
 
 ```
 $ bottlerocket --help
@@ -105,13 +110,22 @@ $ bottlerocket --help
     -V, --verbose <n>       set logging verbosity
 ```
 
-# API
+Or run a REST server
+
+```
+$ bottlerockets http --port 8080
+
+Starting server... (100%)
+
+REST Server listening on port 8080...
+```
+
+# Node Usage
 
 Create a queue with the Bottlerockets launcher:
 
 ```javascript
 import Bottlerockets from 'bottlerockets'
-import http from 'http'
 
 const rockets = new Bottlerockets({
   // Allow up to 5 tasks per single bottlerocket process
@@ -123,8 +137,8 @@ const rockets = new Bottlerockets({
   maxInstances: 8,
 
   // Shut down bottlerocket processes that have not been
-  // used for 15 minutes
-  sleep: 15,
+  // used for 5 minutes
+  sleep: 5,
 })
 
 // Launch 100 rockets at once
@@ -141,6 +155,11 @@ setInterval(function () {
     })
   }
 }, 1000)
+
+// or even run a REST server which can even be mounted
+// as express.js middleware (eg. authentication)
+const server = rockets.createServer()
+server.listen(8080)
 ```
 
 ## Documentation & Community
