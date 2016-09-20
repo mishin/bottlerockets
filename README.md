@@ -154,7 +154,8 @@ setInterval(function () {
   }
 }, 1000)
 
-// or even run a REST server
+// or even run a REST server which can even be mounted
+// as express.js middleware (eg. authentication)
 const server = rockets.createServer()
 server.listen(8080)
 ```
