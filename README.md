@@ -121,8 +121,8 @@ const rockets = new Bottlerockets({
   maxInstances: 8,
 
   // Shut down bottlerocket processes that have not been
-  // used for 15 minutes
-  sleep: 15,
+  // used for 5 minutes
+  sleep: 5,
 })
 
 // Launch 100 rockets at once
