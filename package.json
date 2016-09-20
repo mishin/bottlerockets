@@ -1,0 +1,36 @@
+{
+  "name": "bottlerockets",
+  "version": "0.1.0-alpha.1",
+  "description": "Clustered lambda pools with mocha filled results",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "watch": "supervisor -n exit -w src -- -r 'babel-register' src/index.js",
+    "test": "mocha -r 'babel-register'",
+    "watch-test": "supervisor -x mocha -n exit -w test -- -r 'babel-register' test",
+    "build": "babel -d lib src"
+  },
+  "author": "Samuel Hunter",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-register": "^6.14.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.1.0",
+    "supervisor": "^0.11.0"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "commander": "^2.9.0",
+    "json3": "^3.3.2",
+    "mocha": "^3.0.2",
+    "node-uuid": "^1.4.7",
+    "webdriverio": "^4.2.12"
+  }
+}
