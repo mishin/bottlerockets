@@ -11,8 +11,10 @@
   "scripts": {
     "prepublish": "npm run build",
     "watch": "supervisor -n exit -w src -- -r 'babel-register' src/index.js",
-    "test": "mocha -r 'babel-register'",
-    "watch-test": "supervisor -x mocha -n exit -w test -- -r 'babel-register' test",
+    "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --require babel-register --reporter spec --check-leaks test/",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require babel-register --reporter dot --check-leaks test/",
+    "test": "mocha --reporter spec --require babel-register test/",
+    "watch-test": "supervisor -x mocha -n exit -w test -- --reporter spec -r 'babel-register' test/",
     "build": "babel -d lib src"
   },
   "author": "Samuel Hunter",
@@ -28,6 +30,7 @@
     "chai": "^3.5.0",
     "eslint": "^3.5.0",
     "eslint-config-airbnb": "^11.1.0",
+    "istanbul": "^0.4.5",
     "supervisor": "^0.11.0"
   },
   "dependencies": {

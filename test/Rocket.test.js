@@ -6,7 +6,7 @@ const CLI_PATH = pathJoin(__dirname, '../src/bin/bottlerocket.js')
 
 describe('Rocket', function () {
   describe('test commands', function () {
-    this.timeout(10000)
+    this.timeout(5000)
 
     var rocket
 

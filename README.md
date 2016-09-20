@@ -6,6 +6,8 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
+[![Linux Build][travis-image]][travis-url]
+[![Windows Build][appveyor-image]][appveyor-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
 Bottlerockets is an efficient BDD command framework written in [Node.js](https://nodejs.org/) and streams task results with [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/). Bottlerockets can be used as a CLI tool or a task queue server to stream human readable statuses of tasks and their JSON results.
@@ -158,9 +160,14 @@ MIT License. See [LICENSE.md](http://github.com/bottlerockets/bottlerockets/blob
 | -------------- | --------------------------------------- | ------------------------------------------ |
 | **Sam Hunter** | [samhunta](https://github.com/samhunta) | [@samhuntr](https://facebook.com/samhuntr) |
 
+
+[travis-image]: https://img.shields.io/travis/bottlerockets/bottlerockets/master.svg?label=linux
+[travis-url]: https://travis-ci.org/bottlerockets/bottlerockets
+[appveyor-image]: https://img.shields.io/appveyor/ci/samhunta/bottlerockets/master.svg?label=windows
+[appveyor-url]: https://ci.appveyor.com/project/samhunta/bottlerockets
+[coveralls-image]: https://img.shields.io/coveralls/bottlerockets/bottlerockets/master.svg
+[coveralls-url]: https://coveralls.io/r/bottlerockets/bottlerockets?branch=master
 [npm-image]: https://img.shields.io/npm/v/bottlerockets.svg
 [npm-url]: https://npmjs.org/package/bottlerockets
 [downloads-image]: https://img.shields.io/npm/dm/bottlerockets.svg
 [downloads-url]: https://npmjs.org/package/bottlerockets
-[coveralls-image]: https://img.shields.io/coveralls/bottlerockets/bottlerockets/master.svg
-[coveralls-url]: https://coveralls.io/r/bottlerockets/bottlerockets?branch=master
