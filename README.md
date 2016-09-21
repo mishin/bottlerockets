@@ -9,15 +9,17 @@
 [![Windows Build][appveyor-image]][appveyor-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
-Bottlerockets is an efficient BDD command framework written in [Node.js](https://nodejs.org/) and streams task results with [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/). Bottlerockets can be used as a CLI tool or a task queue server to stream human readable statusses of tasks and their JSON results. Bottlerockets creates a CLI and REPL interface for your tasks for simpler debugging and crazy improvements to your development workflow.
+**Bottlerockets** is a BDD task framework for streaming task results with [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/). Bottlerockets can be used as a CLI tool or a task queue server to stream human readable statusses of tasks and their JSON results. Bottlerockets creates a CLI and REPL interface for your tasks for simpler debugging and improvements to your development workflow.
 
-# Use Cases
+Bottlerockets manages and launches your *bottlerocket processes*. A bottlerocket process is a node process that runs your environment specific tasks and streams test results to your server in JSON format or to your terminal in a mocha spec format. Bottlerockets can also be optimized to run tasks quicker by running multiple tasks in the same process, though this feature is optional. Bottlerockets is built to scale and comes with load balancing algorithms to manage your tasks.
 
-- Run commands with expensive setup/teardown operations
+# Usage
+
 - Run a persistent task queue server with mocha-filled results
-- CLI interface for your project commands
-- Run commands in a REPL environment
-- Easily scale your bottlerockets
+- Run tasks with expensive setup/teardown operations quickly
+- Easily scale your bottlerocket processes
+- CLI interface for your bottlerocket tasks
+- Run your bottlerocket tasks in a REPL
 
 # Install
 
@@ -33,72 +35,75 @@ Initialize `.rockets.js` in the root of your project directory:
 bottlerockets init
 ```
 
-This will create a `.rockets.js` file with an example:
+This will create a `.bottlerockets.json` file:
+
+```json
+{
+  "rockets": [
+    {
+      "files": ["rockets/**"],
+      "balancer": "round-rocket",
+      "maxInstances": 1,
+      "maxTasks": 5,
+      "sleep": 5
+    }
+  ]
+}
+```
 
 ```javascript
-command('welcome')
-  .description('This says hello to the enemy')
-  .args({
-    firstName: {
-      type: String,
-      required: true,
-      default: 'Sam'
-    },
-    lastName: {
-      type: String,
-      required: true,
-      default: 'Hunter'
-    },
-    intruder: {
-      type: Boolean,
-      default: false
-    }
-  })
+/**
+ * This will 
+ */
+task("welcome")
+  .description("This says hello to the enemy")
   .action(function (task, args) {
-    describe('first name', function () {
-      it('is "John"', function () {
-        expect(args.firstName).to.be.equal('John')
-        task.result.name = args.firstName
+    describe("Name", function () {
+      it("is valid", function () {
+        expect(args.firstName).to.be.a('string')
+        expect(args.lastName).to.be.a('string')
+        task.fullName = args.firstName + " " + args.lastName
       })
-    })
 
-    describe('last name', function () {
-      it('is not "Doe"', function () {
-        expect(args.lastName).to.not.be.equal('Doe')
-        task.result.name += ' ' + args.lastName
+      it("is not Adolf Hitler", function () {
+        expect(task.fullName).to.not.be.equal('Adolf Hitler')
       })
     })
+  })
+  .result(function (task, args) {
 
-    describe('is intruder', function () {
-      it('should NOT be an intruder', function () {
-        expect(args.intruder).to.be.equal(false)
-        task.result.intruder = false
-      })
-    })
-    
-    
   })
 ```
 
-Then run the test bottlerocket command by running:
+Then run the test bottlerocket task by running:
 
 ```
-bottlerocket welcome --first-name John --last-name Henrick --intruder
+bottlerocket welcome --first-name John --last-name Henrick --western
 ```
 
-# CLI Usage
+# Bottlerocket CLI
 
-To run a single project bottlerocket command:
+Bottlerockets has CLI commands:
+
+### `bottlerockets [options] <command>`
+
+
+
+### `bottlerocket [options] <task> [args]`
+
+The bottlerockets task runner. Run tasks
+
+To run a single project bottlerocket task:
 
 ```
 $ bottlerocket --help
 
-  Usage: bottlerocket [options] <command> [args]
+  Usage: bottlerocket [options] <task> [args]
 
-  Commands:
+  Tasks:
 
     welcome                 This says hello to the enemy
-    help <cmd>              output help for command
+    help <task>              output help for task
 
   Options:
 
@@ -119,6 +124,10 @@ Starting server... (100%)
 REST Server listening on port 8080...
 ```
 
+# Server
+
+[WIP]
+
 # Node Usage
 
 Create a queue with the Bottlerockets launcher:
@@ -126,7 +135,13 @@ Create a queue with the Bottlerockets launcher:
 ```javascript
 import Bottlerockets from 'bottlerockets'
 
+/**
+ * These are the defaults for a Bottlerockets instance
+ */
 const rockets = new Bottlerockets({
+  // Load balancing method (eg. "round-robin", "queue-doubles")
+  balancer: "queue-doubles",
+
   // Allow up to 5 tasks per single bottlerocket process
   maxTasks: 10,
 
@@ -143,14 +158,14 @@ const rockets = new Bottlerockets({
 // Launch 100 rockets at once
 setInterval(function () {
   for (let i = 0; i < 100; i++) {
-    rockets.launch('welcome', {
-      firstName: 'John',
-      lastName: 'Henrick',
+    rockets.launch("welcome", {
+      firstName: "John",
+      lastName: "Henrick",
       intruder: false,
     }).success(result => {
-      console.log('result', result)
+      console.log("result", result)
     }).catch(err => {
-      console.error('error', err)
+      console.error("error", err)
     })
   }
 }, 1000)
@@ -161,18 +176,18 @@ const server = rockets.createServer()
 server.listen(8080)
 ```
 
-## Documentation & Community
+# Documentation & Community
 
-  - [Documentation](https://bottlerockets.github.io/docs)
-  - [API](https://bottlerockets.github.io/api)
+  - [Documentation](https://docs.bottlerockets.co)
+  - [API](https://docs.bottlerockets.co/api)
   - [Gitter](https://gitter.im/bottlerockets/bottlerockets)
   - [Wiki](https://github.com/bottlerockets/bottlerockets/wiki)
 
-## License
+# License
 
 MIT License. See [LICENSE.md](http://github.com/bottlerockets/bottlerockets/blob/master/LICENSE.md) file for details.
 
-## Contributors
+# Contributors
 
 | Name           | GitHub                                  | Facebook                                   |
 | -------------- | --------------------------------------- | ------------------------------------------ |
