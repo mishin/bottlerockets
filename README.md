@@ -2,14 +2,14 @@
 
 -
 
-[![Bottlerockets Logo](https://cldup.com/6434u5RKNS.png)](https://bottlerockets.github.io/)
+[![Bottlerockets Logo](https://cldup.com/WXo9ouZhmm.png)](https://bottlerockets.github.io/)
 
 [![NPM Version][npm-image]][npm-url]
 [![Linux Build][travis-image]][travis-url]
 [![Windows Build][appveyor-image]][appveyor-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
-**Bottlerockets** is a BDD task framework for streaming task results with [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/). Bottlerockets can be used as a CLI tool or a task queue server to stream human readable statusses of tasks and their JSON results. Bottlerockets creates a CLI and REPL interface for your tasks for simpler debugging and improvements to your development workflow.
+**Bottlerockets** is a BDD task framework for streaming queued task results with [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/). Bottlerockets can be used as a CLI tool or a task queue server to stream human readable statusses of tasks and their JSON results. Bottlerockets creates a CLI and REPL interface for your tasks for simpler debugging and improvements to your development workflow.
 
 Bottlerockets manages and launches your *bottlerocket processes*. A bottlerocket process is a node process that runs your environment specific tasks and streams test results to your server in JSON format or to your terminal in a mocha spec format. Bottlerockets can also be optimized to run tasks quicker by running multiple tasks in the same process, though this feature is optional. Bottlerockets is built to scale and comes with load balancing algorithms to manage your tasks.
 
@@ -52,12 +52,9 @@ This will create a `.bottlerockets.json` file:
 ```
 
 ```javascript
-/**
- * This will 
- */
 task("welcome")
   .description("This says hello to the enemy")
-  .action(function (task, args) {
+  .action(function () {
     describe("Name", function () {
       it("is valid", function () {
         expect(args.firstName).to.be.a('string')
@@ -69,9 +66,6 @@ task("welcome")
         expect(task.fullName).to.not.be.equal('Adolf Hitler')
       })
     })
-  })
-  .result(function (task, args) {
-
   })
 ```
 
@@ -86,8 +80,6 @@ bottlerocket welcome --first-name John --last-name Henrick --western
 Bottlerockets has CLI commands:
 
 ### `bottlerockets [options] <command>`
-
-
 
 ### `bottlerocket [options] <task> [args]`
 
